@@ -57,7 +57,7 @@ class SnippetHandler
     */
     public function getAllSnippets()
     {
-        $url = $this->_api->GetURL() . "snippets";
+        $url = $this->_api->GetURL() . "snippets?limit=20";
 
         //Check if page contain json and if http_respons is 200
         if($json = $this->getJson($url)) {

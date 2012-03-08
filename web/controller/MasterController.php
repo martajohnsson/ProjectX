@@ -7,6 +7,7 @@ require_once dirname(__FILE__) . '/SearchController.php';
 require_once dirname(__FILE__) . '/HeaderController.php';
 require_once dirname(__FILE__) . '/AuthController.php';
 require_once dirname(__FILE__) . '/ProfileController.php';
+require_once dirname(__FILE__) . '/BloggController.php';
 
 class MasterController
 {
@@ -15,6 +16,7 @@ class MasterController
     private $_headerController;
     private $_authController;
     private $_profileController;
+    private $_bloggController;
     private $_html;
 
     public function __construct()
@@ -48,6 +50,9 @@ class MasterController
             } else if ($_GET['page'] == 'profile') {
                 $this->_profileController = new ProfileController();
                 $this->_html .= $this->_profileController->doControll();
+            } else if ($_GET['page'] == 'news') {
+                $this->_bloggController = new BloggController();
+                $this->_html .= $this->_bloggController->doControll();
             }
         } else {
             $this->_searchController = new SearchController();

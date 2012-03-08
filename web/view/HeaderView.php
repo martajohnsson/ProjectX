@@ -23,7 +23,7 @@ class HeaderView
                             <a href='?page=addsnippet'>Add snippet</a> |
                         </li>
                         <li>
-                            <a href='#'>News</a> |
+                            <a href='/news'>News</a> |
                         </li>
                         <li>
                             <a href='#'>Downloads</a> |
@@ -65,7 +65,7 @@ class HeaderView
                             <a href='?page=listsnippets'>Snippets</a> |
                         </li>
                         <li>
-                            <a href='#'>News</a> |
+                            <a href='/news'>News</a> |
                         </li>
                         <li>
                             <a href='#'>Downloads</a> |
