@@ -200,7 +200,11 @@ class ProfileController
         if(true){
         //if(AuthHandler::isOwner($user->getEmail()) || AuthHandler::isAdmin()) {
             $roles = $this->_userHandler->getAllRoles();
-            $this->_data['content'] = $this->_profileView->settings($apiKey, $roles, $user->getRole());
+
+            //get all email addresses that are connected to users account
+            $addresses = $this->_userHandler->getUsersEmail($id);  
+            $this->_data['content'] = $this->_profileView->settings($apiKey, $roles, $user->getRole(), $addresses);
+            
             //if user tries to change role
             if($roleId = $this->_profileView->isChangeUserRole()) {
                 $userEmail = $this->_profileView->getUser();
@@ -208,6 +212,9 @@ class ProfileController
                 $tempUser = $this->_userHandler->getUserByEmail($userEmail);
                 $this->_userHandler->changeUserRole($user->getId(), $roleId);
             }
+
+            //if user tries to delete the account
+            $this->deleteAccount($id);
         } else {
             $this->_data['content'] = $this->_profileView->settings($apiKey);
         }
@@ -245,6 +252,34 @@ class ProfileController
         foreach ($reports as &$report) {
             $url = $this->_gravatarHandler->getPostGravatar($report['email']);
             $report['gravatar'] = $url;
+        }
+     }
+
+    /**
+     * Delete e email connected to user
+     */ 
+     public function delete_email()
+     {
+        if($this->_profileView->deleteEmail()) {
+            if(!$this->_userHandler->deleteUserEmail($id, $email)) {
+                $this->_data['content'] = 'It did not work';
+            }
+        }
+     }
+
+     /**
+      * Delete a user
+      */
+     public function deleteAccount($id)
+     {
+        if($this->_profileView->deleteAccount()){
+            if(!$this->_userHandler->removeAccount($id)){
+                $this->_data['content'] = 'you broke the Internet :(';
+            }
+            $this->_data['content'] = 'Funkade';
+            AuthHandler::logout();
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
         }
      }
 }

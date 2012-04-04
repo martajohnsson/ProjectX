@@ -353,7 +353,6 @@ WHERE auth.identifier = ?")) {
             if($stmt->affected_rows == 1) {
                 $stmt->close();
                 $this->_dbHandler->close();
-
                 return true;
             }
         } else {
@@ -363,5 +362,106 @@ WHERE auth.identifier = ?")) {
         $stmt->close();
         $this->_dbHandler->close();
         return false;
+    }
+
+    public function deleteEmail($id, $email)
+    {
+        $this->_dbHandler->__wakeup();
+        if($stmt = $this->_dbHandler->prepareStatement("DELETE FROM User_auth WHERE user_id = ? AND email = ?")) {
+            $stmt->bind_param('is', $id, $email);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->affected_rows == 1){
+                $result = true;
+            }
+            $stmt->close();
+        }
+        $this->_dbHandler->close();
+        return $result;
+    }
+
+    /**
+     * Delete user data from database. Snippets och kommentarer kommer gå sönder.
+     */
+    public function deleteAccount($id) 
+    {
+        $this->_dbHandler->__wakeup();
+        $result = false;
+        if($stmt = $this->_dbHandler->prepareStatement("DELETE u.*,ua.* 
+                                                        FROM user_auth AS ua
+                                                        INNER JOIN user AS u
+                                                        ON u.id = ua.user_id 
+                                                        WHERE u.id = ?")) {
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->affected_rows == 1){
+                $result = true;
+            }
+            $stmt->close();
+        }
+        $this->_dbHandler->close();
+        return $result;
+    }
+
+    /**
+     * Remove emailadress from user but keep id so the site wont brake.
+     */
+    public function removeAccount($id)
+    {
+        //Remove data from user_auth
+        $this->_dbHandler->__wakeup();
+        $result = false;
+        if($stmt = $this->_dbHandler->prepareStatement("DELETE FROM user_auth WHERE user_id = ?")) {
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $stmt->store_result();
+
+            if($stmt->affected_rows == 1){
+                $result = true;
+            }
+            $stmt->close();
+        }
+
+        //Set data in user to 'removed'
+        if($result){
+            $result = false;
+            $removed = 'removed';
+            if($stmt = $this->_dbHandler->prepareStatement('UPDATE user SET name = ?, username = ?, api_key = ? WHERE id = ?')) {
+                $stmt->bind_param('sssi',$removed, $removed, $removed, $id);
+                $stmt->execute();
+                $stmt->store_result();
+
+                if($stmt->affected_rows == 1) {
+                    $result = true;
+                }
+                $stmt->close();
+            }
+        }
+        $this->_dbHandler->close();
+        return $result;
+    }
+
+    public function getUsersEmail($id)
+    {
+        $this->_dbHandler->__wakeup();
+        $results = array();
+        if($stmt = $this->_dbHandler->prepareStatement("SELECT * from user_auth WHERE user_id = ?")) {
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            $stmt->bind_result($id, $email, $provider, $identifier, $userID);
+            $i = 0;
+            while($stmt->fetch()) {
+                $results[$i]['id'] = $id;
+                $results[$i]['email'] = $email;
+                $results[$i]['provider'] = $provider;
+                $results[$i]['identifier'] = $identifier;
+                $results[$i]['user_id'] = $userID;
+                $i++;
+            }
+        }
+        return $results;
     }
 }

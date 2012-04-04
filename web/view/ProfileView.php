@@ -105,7 +105,7 @@ class ProfileView
         return $html;
     }
     
-    public function settings($apiKey, $roles = null, $currentRole = null)
+    public function settings($apiKey, $roles, $currentRole, $userInfo)
     {
         $username = $this->getUser();
         $html = '<h3>Settings</h3>';
@@ -127,8 +127,21 @@ class ProfileView
             $html .= "</select>
                         <input type='submit' value='save changes' name='changerole' />
                     </form></p>";
-        $html .= '</div>';
         }
+        /*$html .= '<h4>Delete email addresses connected to your account <img class="info" data-info="You cant delete the email address you are logged on to" src="content/image/info.png" alt="info"/>';
+            if($addresses) {
+                $html .= '<ul>';
+                foreach ($addresses as $value) {
+                    $html .= '<li>';
+                    $html .= $value['provider'];
+                    $html .= '</li>';
+                }
+                $html .= '</ul>';
+            }*/
+        $html .= '<h4>Delete your account <img class="info" data-info="your snippets and comments will not be deleted" src="content/image/info.png" alt="info"/>';
+        $html .= '<br>'.$userInfo[0]['email'].'<br>';
+        $html .= '<a href="?page=profile&p=settings&delete='.$userInfo[0]['user_id'].'"> Delete </a>';
+        $html .= '</div>';
 
         return $html;
     }
@@ -202,6 +215,14 @@ class ProfileView
     public function getUser() {
         if(isset($_GET['username'])) {
             return $_GET['username'];
+        }
+        return false;
+    }
+
+    public function deleteAccount()
+    {
+        if(isset($_GET['delete'])) {
+            return $_GET['delete'];
         }
         return false;
     }
