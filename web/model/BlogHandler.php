@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__file__) . '/../model/Blogpost.php';
-require_once dirname(__file__) . '/../model/DbHandler.php';
+require_once dirname(__file__) . '/Blogpost.php';
+require_once dirname(__file__) . '/DbHandler.php';
 
 class BlogHandler
 {

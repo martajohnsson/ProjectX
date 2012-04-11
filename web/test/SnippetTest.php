@@ -1,12 +1,13 @@
 <?php
 require_once dirname(__FILE__) . '/simpletest/autorun.php';
-require_once dirname(__FILE__) . '/../model/Snippet.php';
+//require_once dirname(__FILE__) . '/../model/Snippet.php';
 
 class SnippetTest extends UnitTestCase
 {
 
     private $_id;
     private $_author;
+    private $_authorName;
     private $_code;
     private $_title;
     private $_desc;
@@ -16,14 +17,14 @@ class SnippetTest extends UnitTestCase
     public function __construct()
     {
         $this->_author = '18';
+        $this->_authorName = 'testName';
         $this->_code = 'testCode';
         $this->_title = 'testTitle';
         $this->_desc = 'testDesc';
         $this->_language = '1';
         $this->_id = 0;
         $date = "0000-00-00 00:00:00";
-
-        $this->_snippet = new Snippet($this->_author, $this->_code, $this->_title, $this->_desc, $this->_language, $date, $date, $this->_id);
+        $this->_snippet = new Snippet($this->_author, $this->_authorName, $this->_code, $this->_title, $this->_desc, $this->_language, $date, $date, 'php', $this->_id);
     }
 
     public function testGetID()

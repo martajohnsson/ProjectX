@@ -1,6 +1,6 @@
 <?php
-require_once 'API.php';
-require_once 'Snippet.php';
+require_once dirname(__FILE__) . '/API.php';
+require_once dirname(__FILE__) . '/Snippet.php';
 
 $api = new API();
 $snippets = null;

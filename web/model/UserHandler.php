@@ -1,7 +1,7 @@
 <?php
 
-require_once 'DbHandler.php';
-require_once 'User.php';
+require_once dirname(__file__) . '/DbHandler.php';
+require_once dirname(__FILE__) . '/User.php';
 
 class UserHandler
 {

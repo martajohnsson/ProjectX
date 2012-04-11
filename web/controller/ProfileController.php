@@ -3,6 +3,8 @@
 require_once dirname(__FILE__) . '/../view/ProfileView.php';
 require_once dirname(__FILE__) . '/../model/GravatarHandler.php';
 require_once dirname(__FILE__) . '/../model/UserHandler.php';
+require_once dirname(__FILE__) . '/../model/CommentHandler.php';
+require_once dirname(__FILE__) . '/../model/SnippetHandler.php';
 
 class ProfileController
 {

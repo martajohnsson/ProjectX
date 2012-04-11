@@ -1,9 +1,9 @@
 <?php
 
-require_once 'DbHandler.php';
-require_once 'Comment.php';
-require_once 'User.php';
-require_once 'API.php';
+require_once dirname(__FILE__) . '/DbHandler.php';
+require_once dirname(__FILE__) . '/Comment.php';
+require_once dirname(__FILE__) . '/User.php';
+require_once dirname(__FILE__) . '/API.php';
 
 class CommentHandler
 {

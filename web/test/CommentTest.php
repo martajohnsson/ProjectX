@@ -10,6 +10,8 @@ class CommentTest extends UnitTestCase
     private $_snippetID;
     private $_commentID;
     private $_commentText;
+    private $_commentDate;
+    private $_username;
 
     public function __construct()
     {
@@ -17,7 +19,10 @@ class CommentTest extends UnitTestCase
         $this->_snippetID = 2;
         $this->_commentID = 3;
         $this->_commentText = 'testText';
-        $this->_comment = new Comment($this->_snippetID, $this->_commentID, $this->_userID, $this->_commentText);
+        $this->_commentDate = '2012-02-01';
+        $this->_username = 'testUser';
+        
+        $this->_comment = new Comment($this->_snippetID, $this->_commentID, $this->_userID, $this->_commentText, $this->_commentDate, $this->_username);
     }
 
     public function testGetSetUser()

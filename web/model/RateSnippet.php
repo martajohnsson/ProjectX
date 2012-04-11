@@ -1,6 +1,6 @@
 <?php
-require_once 'API.php';
-require_once 'AuthHandler.php';
+require_once dirname(__FILE__) . '/API.php';
+require_once dirname(__FILE__) . '/AuthHandler.php';
 
 $api = new API();
 $url = $api->GetURL() . "ratings";

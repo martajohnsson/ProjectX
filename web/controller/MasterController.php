@@ -1,7 +1,5 @@
 <?php
 require_once dirname(__FILE__) . '/../model/Log.php';
-require_once dirname(__FILE__) . '/../model/SnippetHandler.php';
-require_once dirname(__FILE__) . '/../view/SnippetView.php';
 require_once dirname(__FILE__) . '/SnippetController.php';
 require_once dirname(__FILE__) . '/SearchController.php';
 require_once dirname(__FILE__) . '/HeaderController.php';

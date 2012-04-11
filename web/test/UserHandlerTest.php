@@ -1,7 +1,8 @@
 <?php
 require_once dirname(__FILE__) . '/simpletest/autorun.php';
 require_once dirname(__FILE__) . '/../model/SnippetHandler.php';
-require_once dirname(__FILE__) . '/../model/User.php';
+//require_once dirname(__FILE__) . '/../model/User.php';
+
 class UserHanderTest extends UnitTestCase
 {
 	

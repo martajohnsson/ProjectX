@@ -1,6 +1,6 @@
 <?php
 
-require_once 'UserHandler.php';
+require_once dirname(__FILE__) . '/UserHandler.php';
 
 class BlogPost
 {

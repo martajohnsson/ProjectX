@@ -227,4 +227,3 @@ class ProfileView
         return false;
     }
 }
-
