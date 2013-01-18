@@ -10,16 +10,16 @@ $_html = $_mc->doControll();
         <meta charset="utf-8">
         <title>Snippt</title>
         <!--<link rel="stylesheet" href="content/css/reset.css" />-->
+        <!--<link rel="stylesheet" href="content/css/style.css" />-->
 
         <link href="content/css/bootstrap.css" rel="stylesheet">
         <style type="text/css">
           body {
-            padding-top: 40px;
+            padding-top: 60px;
             padding-bottom: 40px;
           }
         </style>
         <link href="content/css/bootstrap-responsive.css" rel="stylesheet" >
-        <link href="content/css/style.css" rel="stylesheet" >
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script src="content/js/janrain-engage.js"></script>
@@ -28,24 +28,27 @@ $_html = $_mc->doControll();
     </head>
     <body>
     	
-        <?php echo $_mc->doHeader();?>
-        <div class="container" style="background-color: white;">
-            <div id="learn-more-wrap">
-                <div id="learn-more-content">
-                	<h2>Snippets at hand</h2>
-                	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </div>
-            </div>
+        <div class="container">
+        	<?php echo $_mc->doHeader();?>
         	
-            <div class="row">
+        	<div id="learn-more-wrap">
+    		<div id="learn-more-content">
+            	<h2>Snippets at hand</h2>
+            	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        	</div>
+        </div>
+        	
+            <div class="content">
                 <?php echo $_html;?>
             </div>
-            <footer>
-                <p class="pull-right muted footer-copyright"><small>ALL RIGHTS RESERVED</small></p>
-            </footer>
+            <p id="copy">ALL RIGHTS RESERVED</p>
         </div>
+        
+        <footer>
+            
+        </footer>
         
 		<script src="content/js/lib/mootools-core.js"></script>
 		<script src="content/js/lib/mootools-slide.js"></script>

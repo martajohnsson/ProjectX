@@ -3,7 +3,7 @@ $(document).ready(function () {
         if (typeof window.janrain !== 'object') window.janrain = {};
         window.janrain.settings = {};
         
-        janrain.settings.tokenUrl = 'http://127.0.0.1:8888/login';
+        janrain.settings.tokenUrl = 'http://127.0.0.1:8088/?page=login';
     
         function isReady() { janrain.ready = true; };
         if (document.addEventListener) {
