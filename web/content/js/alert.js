@@ -54,5 +54,4 @@ $(document).ready(function() {
         var content = $('<p></p>').html(alertText);
         $(popup).append(content);
     };
-
 });

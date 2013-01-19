@@ -9,19 +9,32 @@ class BlogView
      */
     public function singleView($blogpost)
     {
-        $html = "<h2 class='blogpost-title'>" . $blogpost->getTitle() . "</h2>
-                <div class='blogpost-author'>
-                    Posted by " . $blogpost->getAuthor() . " on " . $blogpost->getDate() .
-                "</div>
-                <div class='blog-content'>
-                    <p>" . $blogpost->getContent() . "</p>
-                </div>";
+        $html = "
+                <div class='row'>
+                    <div class='span12'>
+                        <div class='inner'>
+                            <h1 class='blogpost-title'>" . $blogpost->getTitle() . "</h1>
+                            <div class='blogpost-author muted'>
+                                Posted by " . $blogpost->getAuthor() . " on " . $blogpost->getDate() .
+                            "</div>
+                            <div class='blog-content'>
+                                <p>" . $blogpost->getContent() . "</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ";
                 
         if (AuthHandler::isAdmin()) {
-            $html .= "<div class='blogpost-edit'>
-                        Admin options:
-                        <a onclick=\"javascript: return confirm('Do you want to remove this blogpost?')\" href='?page=removeblogpost&blogpost=" . $blogpost->getId() . "'>Delete post</a> | 
-                        <a href='?page=editblogpost&blogpost=" . $blogpost->getId() . "'>Edit post</a>
+            $html .= "
+                    <div class='row'>
+                        <div class='span12'>
+                            <div class='inner blogpost-edit'>
+                                Admin options:
+                                <a onclick=\"javascript: return confirm('Do you want to remove this blogpost?')\" href='?page=removeblogpost&blogpost=" . $blogpost->getId() . "'>Delete post</a> | 
+                                <a href='?page=editblogpost&blogpost=" . $blogpost->getId() . "'>Edit post</a>
+                            </div>
+                        </div>
                     </div>";
         }
               
@@ -36,24 +49,38 @@ class BlogView
     public function listView($blogposts)
     {
         if (empty($blogposts)) {
-            $html = '<h1>No blogcontent</h1>';
+            $html = '
+            <div class="row">
+                <div class="span12">
+                    <div class="inner">
+                        <h1>No blogcontent</h1>
+                    </div>
+                </div>
+            </div>';
             
             return $html;
         }
         
-        $html = '<h1>Blog entries</h1>';
+        $html = '
+        <div class="row">
+            <div class="span12">
+                <div class="inner">
+                    <h1>Blog entries</h1>
+                </div>
+            </div>
+        </div>';
         
         foreach($blogposts as $blogpost) {
             $html .= '
-                <div class="blogpost-list-item">
-                    <div class="blogpost-title">
-                        <p>' . $blogpost->getTitle() . '</p>
-                    </div>
-                    <div class="blogpost-read-more">
-                        <p>' . $blogpost->getReadMoreContent() .'<a href="?page=listblogposts&blogpost=' . $blogpost->getId() . '">Read more</a></p>
-                    </div>
-                    <div class="blogpost-author">
-                        <p>Posted by ' . $blogpost->getAuthor() . ' on ' . $blogpost->getDate() . '</p>
+                <div class="row">
+                    <div class="span12">
+                        <div class="blogpost-list-item">
+                            <h2 class="blogpost-title">' . $blogpost->getTitle() . '</h2>
+                            <div class="blogpost-read-more">
+                                <p>' . $blogpost->getReadMoreContent() .'<a href="?page=listblogposts&blogpost=' . $blogpost->getId() . '">Read more</a></p>
+                            </div>
+                            <p class="blogpost-author muted">Posted by ' . $blogpost->getAuthor() . ' on ' . $blogpost->getDate() . '</p>
+                        </div>
                     </div>
                 </div>
             ';
@@ -68,16 +95,19 @@ class BlogView
      */
     public function addBlogpost()
     {
-        $html = '<h1>Add new blogpost</h1>
-            <div id="createBlogpostContainer">
-                <form action="" method="post">
-                    <input type="text" name="blogpostTitle" placeholder="Title" />
-                    <textarea name="blogContent" class="editor" maxlength="4000" placeholder="Your content"></textarea>
-                    <input type="submit" name="addBlogpostButton" id="addBlogpostButton" value="Add Blogpost" />
-                </form>
-            </div>
-            ';
-            
+        $html = '
+            <div class="row">
+                <div class="span12">
+                    <div class="inner">
+                        <h1 class="blogpost-title">Add new blogpost</h1>
+                        <form action="" method="post">
+                            <input class="input-xlarge" type="text" name="blogpostTitle" placeholder="Title" />
+                            <textarea name="blogContent" class="editor input-xxlarge" maxlength="4000" placeholder="Your content"></textarea>
+                            <input class="btn" type="submit" name="addBlogpostButton" id="addBlogpostButton" value="Add Blogpost" />
+                        </form>
+                    </div>
+                </div>
+            </div>';
         return $html;
     }
     
@@ -88,14 +118,23 @@ class BlogView
      */
     public function editBlogpost($blogpost)
     {
-        $html = '<h1>Edit the blogpost "' . $blogpost->getTitle() . '"</h1>
-            <div id="createBlogpostContainer">
-                <form action="" method="post">
-                    <input type="text" name="editBlogpostTitle" placeholder="Title" value="' . $blogpost->getTitle() . '" />
-                    <textarea name="editBlogContent" class="editor" maxlength="4000" placeholder="Your content">' . $blogpost->getContent() . '</textarea>
-                    <input type="submit" name="editBlogpostButton" id="editBlogpostButton" value="Save Blogpost" />
-                </form>
-            </div>';
+        $html = '
+            <div class="row">
+                <div class="span12">
+                    <div class="inner">
+                    
+                            <h1 class="blogpost-title">Edit the blogpost "' . $blogpost->getTitle() . '"</h1>
+                    
+                            <form action="" method="post">
+                                <input class="input-xlarge" type="text" name="editBlogpostTitle" placeholder="Title" value="' . $blogpost->getTitle() . '" />
+                                <textarea name="editBlogContent" class="editor input-xxlarge" maxlength="4000" placeholder="Your content">' . $blogpost->getContent() . '</textarea>
+                                <input class="btn" type="submit" name="editBlogpostButton" id="editBlogpostButton" value="Save Blogpost" />
+                            </form>
+                        
+                    </div>
+                </div>
+            </div>
+            ';
             
         return $html;    
     }

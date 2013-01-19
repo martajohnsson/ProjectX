@@ -4,20 +4,18 @@ class SearchView {
     
     public function doSearchForm() {
                     
-            $html = '<div class="span12 search pagination-centered">
-                        <div class ="row">
-                            <div class="span12">
-                                <img src="content/image/snippet-logo.png" alt="Snippt" />
-                            </div>
+            $html = '<div class ="row">
+                        <div class="span12 search pagination-centered">
+                            <img src="content/image/snippet-logo.png" alt="Snippt" />
                         </div>
-                        <div class ="row">
-                            <div class="span12">
-                                <input type="text" name="q" id="search_input" class="input-xlarge uneditable-input" />
-                            </div>
+                    </div>
+                    <div class ="row">
+                        <div class="span12 pagination-centered">
+                            <input type="text" name="q" id="search_input" class="input-xlarge uneditable-input" />
                         </div>
-                        <div class ="row">
-                            <div class="span12" id="result"></div>
-                        </div>    
+                    </div>
+                    <div class ="row">
+                        <div class="span12 pagination-centered" id="result"></div>
                     </div>';
                             
             $html .= '<script type="text/javascript">
