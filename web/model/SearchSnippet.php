@@ -24,12 +24,12 @@ if ($json = json_decode(@file_get_contents($url))) {
         $html .= '
             <div class="snippet-list-item">
                 <div class="snippet-title">
-                    <h3><a href="?page=listsnippets&snippet=' . $snippet->getID() . '">' . $snippet->getTitle() . '</a></h3>
+                    <h2><a href="?page=listsnippets&snippet=' . $snippet->getID() . '">' . $snippet->getTitle() . '</a></h2>
                 </div>
                 <div class="snippet-description">
                     <p>' . $snippet->getDesc() . '</p>
                 </div>
-                <div class="snippet-author">
+                <div class="snippet-author muted">
                     <p>Posted by: <i>' . $snippet->getAuthor() . '</i></p>
                 </div>
             </div>

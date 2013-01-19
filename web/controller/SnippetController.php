@@ -75,17 +75,17 @@ class SnippetController
 	                        header("Location: " . $_SERVER['PHP_SELF'] . "?page=listsnippets&snippet=" . $id);
 	                        exit();
 	                    }
-	                    $this->_html .= "<p>Error, your snippet was not created. Please try again! ". $id ."</p>";
+	                    $this->_html .= "<div class='inner alert alert-error'><p>Error, your snippet was not created. Please try again! ". $id ."</p></div>";
 					} else {
 					    $_SESSION['title'] = $this->_snippetView->getSnippetTitle();
                         $_SESSION['desc'] = $this->_snippetView->getSnippetDescription();
                         $_SESSION['code'] = $this->_snippetView->getCreateSnippetCode();
                         $this->_html = $this->_snippetView->createSnippet($this->_snippetHandler->getLanguages());
-						$this->_html .= "<p>The reCAPTCHA answer given is not correct</p>";
+						$this->_html .= "<div class='inner alert alert-error'><p>The reCAPTCHA answer given is not correct</p></div>";
 					}
                 }
             } else {
-                $this->_html = "<p>You must sign in to add a snippet.</p>";
+                $this->_html = "<div class='alert alert-info'><p>You must sign in to add a snippet.</p></div>";
             }
         } else if ($page == 'update') {
             $this->_html = null;

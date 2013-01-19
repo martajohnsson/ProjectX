@@ -76,7 +76,7 @@ class SnippetView
 
         foreach ($snippets as $snippet) {
             $html .= '
-                <div" class="snippet-list-item">
+                <div class="snippet-list-item">
                     <div class="snippet-title">
                         <p><a href="?page=listsnippets&snippet=' . $snippet->getID() . '">' . $snippet->getTitle() . '</a></p>
                     </div>
@@ -99,38 +99,22 @@ class SnippetView
     		theme : "clean"
  		};
  		</script>
-        
-        <div class="inner">
-        <h1 class="snippet-title">Add a new snippet</h1>
-         
-                <form  class="form-horizontal" action="" method="post">
-                <div class="control-group">
-                    <input class="input-xlarge" type="text" name="snippetTitle" placeholder="Title" value="' . $_SESSION['title'] . '" />
-                </div>
-                <div class="control-group">
-                    <input class="input-xlarge" type="text" name="snippetDescription" placeholder="Description" value="' . $_SESSION['desc'] . '" />
-                </div>
-                
-                <div class="control-group">
-                    <select class="input-xlarge" name="snippetLanguage">
+        <h1>Add a new snippet</h1>
+            <div id="createSnippetContainer">
+                <form action="" method="post">
+                    <input type="text" name="snippetTitle" placeholder="Title" value="' . $_SESSION['title'] . '" />
+                    <input type="text" name="snippetDescription" placeholder="Description" value="' . $_SESSION['desc'] . '" />
+                    <select name="snippetLanguage">
                         <option >Choose language</option>';
-                            foreach ($languages as $language) {
-                                    $html .= '
-                                    <option value="' . $language->getLangId() . '">' . $language->getLanguage() . '</option>';
-                                }
-                                $html .= '
-                    </select>
-                </div>
-                
-                <div class="control-group">
-                    <textarea class="input-xxlarge" rows="10" name="createSnippetCodeInput" maxlength="1500" placeholder="Your snippet">' . $_SESSION['code'] . '</textarea>
-                </div>'
-                    .recaptcha_get_html($this->_publicKey) .
-                    '<input class="btn" type="submit" name="createSnippetSaveButton" id="createSnippetSaveButton" value="Create snippet" />
+        foreach ($languages as $language) {
+            $html .= '<option value="' . $language->getLangId() . '">' . $language->getLanguage() . '</option>';
+        }
+        $html .= '</select>
+                    <textarea name="createSnippetCodeInput" maxlength="1500" placeholder="Your snippet">' . $_SESSION['code'] . '</textarea>'
+                    . recaptcha_get_html($this->_publicKey) .
+                    '<input type="submit" name="createSnippetSaveButton" id="createSnippetSaveButton" value="Create snippet" />
                 </form>
-       
-            
-        </div>    
+            </div>
         ';
         return $html;
     }

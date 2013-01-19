@@ -11,7 +11,7 @@ class SearchView {
                     </div>
                     <div class ="row">
                         <div class="span12 pagination-centered">
-                            <input type="text" name="q" id="search_input" class="input-xlarge uneditable-input" />
+                            <input type="text" name="q" id="search_input" class="input-xlarge" />
                         </div>
                     </div>
                     <div class ="row">

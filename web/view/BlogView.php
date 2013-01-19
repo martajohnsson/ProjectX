@@ -77,7 +77,7 @@ class BlogView
                         <div class="blogpost-list-item">
                             <h2 class="blogpost-title">' . $blogpost->getTitle() . '</h2>
                             <div class="blogpost-read-more">
-                                <p>' . $blogpost->getReadMoreContent() .'<a href="?page=listblogposts&blogpost=' . $blogpost->getId() . '">Read more</a></p>
+                                ' . $blogpost->getReadMoreContent() .'<a href="?page=listblogposts&blogpost=' . $blogpost->getId() . '">Read more</a>
                             </div>
                             <p class="blogpost-author muted">Posted by ' . $blogpost->getAuthor() . ' on ' . $blogpost->getDate() . '</p>
                         </div>
