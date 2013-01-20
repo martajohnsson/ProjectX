@@ -1,60 +1,31 @@
 <?php
+
 class ProfileView
 {
+
     public function profile($avatar, $name, $data, $user)
     {
         $html = $this->doProfileMenu($data['isAdmin'], $data['isOwner'], $data['email']);
         $html .= "
-                
-                <div class='row'>   
-                
-                    <div class='span6'>
-                        <div class='inner' id='profile-stats'>
-                            <h3>Hi there " . $name . "</h3><br />
-                            <img  class='img-polaroid' src='" . $avatar . "' alt='User' /> 
-                            
-                            <br /><br />
-                            <p>Created snippets:" . count($data['snippets']) . "</p>
-                            <p>Commented snippets: " . count($data['comments']) . "</p>
-                            <p>Total likes: " . count($data['likes']) . "</p>
-                            <p>Total dislikes: " . count($data['dislikes']) . "</p>
-                            <p>User role: " . $user->getRoleName() . "</p>
-                            <p>Api-key: " . $user->getApiKey() . "</p>
-                            <p>UserID: " . $user->getId() . "</p>
-                        </div>
-                    </div>
-                    
-                    <div class='span6'>
-                        <div class='inner'>
-                            <div class='tab-content' id='user-activity'>";
-                                $html .= $data['content'];
-                                $html .= "
-                            </div>
-                        </div>
-                    </div>
-                </div>";
+                <div id='profile-stats'>
+                    <h3>Hi there" . $name . "</h3><br />
+                    <img src='" . $avatar . "' alt='User' /> <br /><br />
+                        <p>Created snippets:" . count($data['snippets']) . "</p>
+                        <p>Commented snippets: " . count($data['comments']) . "</p>
+                        <p>Total likes: " . count($data['likes']) . "</p>
+                        <p>Total dislikes: " . count($data['dislikes']) . "</p>
+                        <p>User role: " . $user->getRoleName() . "</p>
+                        <p>Api-key: " . $user->getApiKey() . "</p>
+                        <p>UserID: " . $user->getId() . "</p>
+                </div>
+                <div id='user-activity'>";
+
+        $html .= $data['content'];
+
+        $html .= "</div><div class='clear'></div>";
         return $html;
     }
-    public function doProfileMenu($isAdmin, $isOwner, $email)
-    {
-        $html = "
-                <ul class='nav nav-tabs'>
-                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=created'>Created snippets</a></li>
-                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=commented'>Commented snippets</a></li>
-                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=liked'>Liked snippets</a></li>
-    	            <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=disliked'>Disliked snippets</a></li>";
-                    if($isAdmin) {
-                        $html .= "
-                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=reported'>Reported snippets</a></li>";
-                    }
-                    if($isOwner || $isAdmin) {
-                        $html .= "
-                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=settings'>Settings</a></li>";
-                    }
-                    $html .= "
-                </ul>";  
-        return $html;
-    }
+
     public function likedSnippets($likedSnippets)
     {
         $html = "<h3>Liked snippets</h3>
@@ -64,7 +35,7 @@ class ProfileView
                 $html .= "<li><a href='" . $_SERVER['PHP_SELF'] . "?page=listsnippets&amp;snippet=" . $snippet->getID() . "'>" . $snippet->getTitle() . "</a></li>";
             }
         } else {
-            $html .= "<li>You have not liked any snippets.</li>";
+            $html .= "You have not liked any snippets.";
         }
         $html .= "</ul>";
         return $html;
@@ -79,7 +50,7 @@ class ProfileView
                 $html .= "<li><a href='" . $_SERVER['PHP_SELF'] . "?page=listsnippets&amp;snippet=" . $snippet->getID() . "'>" . $snippet->getTitle() . "</a></li>";
             }
         } else {
-            $html .= "<li>You have not disliked any snippets.</li>";
+            $html .= "You have not disliked any snippets.";
         }
         $html .= "</ul>";
         return $html;
@@ -94,7 +65,7 @@ class ProfileView
                 $html .= "<li><a href='" . $_SERVER['PHP_SELF'] . "?page=listsnippets&amp;snippet=" . $snippet->getID() . "'>" . $snippet->getTitle() . "</a> - (" . $snippet->getLanguage() . ")</li>";
             }
         } else {
-            $html .= '<li>You have not created any snippets.</li>';
+            $html .= 'You have not created any snippets.';
         }
         $html .= "</ul>";
         return $html;
@@ -115,6 +86,27 @@ class ProfileView
         return $html;
     }
     
+    public function doProfileMenu($isAdmin, $isOwner, $email)
+    {
+        $html = "    
+                <ul id='profile-menu'>
+                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=created'>Created snippets</a></li>
+                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=commented'>Commented snippets</a></li>
+                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=liked'>Liked snippets</a></li>
+    	            <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=disliked'>Disliked snippets</a></li>";
+                    if($isOwner || $isAdmin) {
+                        $html .= "
+                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=settings'>Settings</a></li>";
+                    }
+                    
+                    if($isAdmin) {
+                        $html .= "
+                    <li><a href='" . $_SERVER['PHP_SELF'] . "?page=profile&amp;p=reported'>Reported snippets</a></li>";
+                    }
+                    $html .= "
+                </ul>";
+        return $html;
+    }
     
     public function settings($apiKey, $roles, $currentRole, $userInfo)
     {
