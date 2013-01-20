@@ -24,16 +24,12 @@ class SnippetView
     		<div class='snippet-description'>
     			<p>" . $snippet->getDesc() . "</p>	
     		</div>
-    		<div class='snippet-code' id='snippet-text'>
-    			<code id='code' class='snippet-text'>" . $sh->geshiHighlight($snippet->getCode(), $snippet->getLanguage()) . "</code>
-    		</div>
-    
+    		<pre><code>" . $sh->geshiHighlight($snippet->getCode(), $snippet->getLanguage()) . "</code></pre>
             <div id='hidden'>".$snippet->getCode()."</div>
-            
     		<div class='snippet-author'>
-    			<span>Posted by " . $snippet->getAuthor()."</span></br>";
+    			<span class='muted'>Posted by " . $snippet->getAuthor()."</span></br>";
                 if ($isOwner) {
-        		    $html .= " <a onclick=\"javascript: return confirm('Do you want to remove this snippet?')\" href='?page=removesnippet&snippet=" . $snippet->getID() . "'>Delete</a> 
+        		    $html .= " <a onclick=\"javascript: return confirm('Do you want to remove this snippet?')\" href='?page=removesnippet&snippet=" . $snippet->getID() . "'>Delete | </a> 
         		    <a href='?page=updatesnippet&snippet=" . $snippet->getID() . "'>Update</a>";
         	    }
                 if(AuthHandler::isLoggedIn()){    
@@ -43,7 +39,6 @@ class SnippetView
                                 <input type="submit" name="send-report" value="Report!" />
                             </form></div>';
                 }     
-    		
     		$html .= "</span>
     	          </div>
         </div>
@@ -52,23 +47,6 @@ class SnippetView
         
         return $html;
     }
-    
-    public function mailView()
-    {
-        $html = '<div class="mail">
-            		<form id="formmail" action="" method ="POST">
-            			<label>Your mail :</label>
-            			<input type="text" name="mail" id="mailAddress" />
-            			<input type="submit" id="sendByMail" name="sendByMail" value="send mail" />
-            		</form>
-                    <div id="response">
-                    </div>
-        	</div>';
-
-        return $html;
-    }    
-
-
     /**
      * Transform an array of snippets to html-code
      * @param array $aSnippets is an array of snippets
@@ -142,13 +120,22 @@ class SnippetView
 
     public function updateSnippet($snippet)
     {
-        $html = '<h1>Update the snippet "' . $snippet->getTitle() . '"</h1>
-            <div id="createSnippetContainer">
-                <form action="" method="post">
-                    <input type="text" name="updateSnippetTitle" placeholder="Title" value="' . $snippet->getTitle() . '" />
-                    <input type="text" name="updateSnippetDescription" placeholder="Description" value="' . $snippet->getDesc() . '"  />
-                    <textarea name="updateSnippetCodeInput" maxlength="1500" placeholder="Your snippet">' . $snippet->getCode() . '</textarea>
-                    <input type="submit" name="updateSnippetUpdateButton" id="updateSnippetUpdateButton" value="Update snippet" />
+        $html = '
+            <div class="inner">
+            
+                <h1 class="snippet-title">Update the snippet "' . $snippet->getTitle() . '"</h1>
+                
+                <form class="form-horizontal" action="" method="post">
+                 <div class="control-group">
+                    <input class="input-xlarge" type="text" name="updateSnippetTitle" placeholder="Title" value="' . $snippet->getTitle() . '" />
+                 </div>
+                 <div class="control-group">
+                    <input class="input-xlarge" type="text" name="updateSnippetDescription" placeholder="Description" value="' . $snippet->getDesc() . '"  />
+                 </div>
+                 <div class="control-group">
+                    <textarea class="input-xxlarge" rows="10" name="updateSnippetCodeInput" maxlength="1500" placeholder="Your snippet">' . $snippet->getCode() . '</textarea>
+                </div>
+                <input class="btn" type="submit" name="updateSnippetUpdateButton" id="updateSnippetUpdateButton" value="Update snippet" />
                 </form>
             </div>';
             
@@ -162,7 +149,7 @@ class SnippetView
      * @return string
      */
     public function rateSnippet($snippet_id, $user_id, $rating) {
-        $html = '<div id="rating">
+        $html = '<div class="inner" id="rating">
                     <button name="like" type="button" id="like"><img src="content/image/like.png" title="Like!" /></button>
                     <button name="dislike" type="button" id="dislike"><img src="content/image/dislike.png" title="Dislike!" /></button>
                 

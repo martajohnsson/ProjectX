@@ -19,7 +19,7 @@ class CommentController
 
     public function doControll()
     {
-        $html = "<h2>Comments</h2>";
+        $html = "";
         $commentHandler = new CommentHandler($this->_dbHandler);
 		$_SESSION['comment'] = "";
 

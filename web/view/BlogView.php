@@ -65,7 +65,7 @@ class BlogView
         <div class="row">
             <div class="span12">
                 <div class="inner">
-                    <h1>Blog entries</h1>
+                    <h1 class="snippet-title">Blog entries</h1>
                 </div>
             </div>
         </div>';

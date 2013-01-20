@@ -8,7 +8,7 @@ class DownloadView {
             <div class="row">
                 <div class="span12">
                     <div class="inner">
-                        <h1>Downloads</h1>
+                        <h1 class="snippet-title">Downloads</h1>
                     </div>  
                     <div class="row">
                         <div class="span4">

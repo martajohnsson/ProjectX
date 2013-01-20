@@ -17,12 +17,15 @@ class CommentView
     		theme : 'clean'
  			};
  			</script>
-        	<div id='comment'>
-                    <h3>Post a comment</h3>
-                    <form action='#' method='POST'>
-                        <textarea name='commentText' maxlength='1500' placeholder='Your comment'>" . $_SESSION['comment'] . "</textarea>"
-                        . recaptcha_get_html($this->_publicKey) .                     
-                        "<input type='submit' name='submitComment' value='Post comment'/>
+            
+        	<div class='inner' id='comment'>
+                    <h5>Post a comment</h5>
+                    <form class='form-horizontal' action='#' method='POST'>
+                        <div class='control-group'>
+                            <textarea class='input-xxlarge' rows='10' name='commentText' maxlength='1500' placeholder='Your comment'>" . $_SESSION['comment'] . "</textarea>
+                        </div>"
+                        .recaptcha_get_html($this->_publicKey) .                     
+                        "<input class='btn' type='submit' name='submitComment' value='Post comment'/>
                     </form>
                 </div>";
         return $form;
@@ -37,20 +40,29 @@ class CommentView
     public function showAllCommentsForSnippet($comments, $userId = null)
     {
         $message = "";
-        if (!empty($comments)) {
-            for ($i = 0; $i < count($comments); $i++) {
-                $message .= "<div class='comments'>";
-                $message .= "<p class='snippet-author'>" . $comments[$i]->getUsername() . "</p>";
-                $message .= "<p class='date'>" . $comments[$i]->getCommentDate() . "</p>";
-                $message .= "<p class='text'>" . $comments[$i]->getCommentText() . "</p>";
+        if (!empty($comments)) 
+        {
+            for ($i = 0; $i < count($comments); $i++) 
+            {
+                $message .= 
+                "
+                <div class='media inner'>
+                    <div class='media-body'>
+                        <p class='media-heading muted'>" . $comments[$i]->getUsername() . "  <span class='snippet-author'>" . $comments[$i]->getCommentDate() . "</span></p>
+                        <span>" . $comments[$i]->getCommentText() . "</span>
+                    </div>
+                </div>";
+                    
+                    
                 if($comments[$i]->getUserId() == $userId && $userId != null) {
                     $message .= "<a onclick=\"javascript: return confirm('Do you want to remove this comment?')\" href='index.php?page=listsnippets&snippet=" . $comments[$i]->getSnippetId() . "&deleteComment=" . $comments[$i]->getCommentId() . "'>Delete</a> ";
                     $message .= "<a onclick=\"javascript: return confirm('Do you want to edit this comment?')\" href='index.php?page=listsnippets&snippet=" . $comments[$i]->getSnippetId() . "&editComment=" . $comments[$i]->getCommentId() . "'>Update</a>";
                 }
                 
-                $message .= "</div>";
+                $message .= "";
             }
-        } else {
+        } 
+        else {
             $message .= "<p>There are no comments for this snippet.</p>";
         }
 

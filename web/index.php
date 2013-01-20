@@ -9,16 +9,7 @@ $_html = $_mc->doControll();
     <head>
         <meta charset="utf-8">
         <title>Snippt</title>
-        <!--<link rel="stylesheet" href="content/css/reset.css" />-->
-
         <link href="content/css/bootstrap.css" rel="stylesheet">
-        <style type="text/css">
-          body {
-            padding-top: 40px;
-            padding-bottom: 40px;
-          }
-        </style>
-        <link href="content/css/bootstrap-responsive.css" rel="stylesheet" >
         <link href="content/css/style.css" rel="stylesheet" >
         
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -47,7 +38,7 @@ $_html = $_mc->doControll();
                     </div>
                 </div>
             </div> 
-            <div class="row">
+            <div class="row" style="padding-top: 40px;">
                 <div class="span12">
                     <?php echo $_html;?>
                 </div>
@@ -64,18 +55,6 @@ $_html = $_mc->doControll();
 		<script src="content/js/learn-more.js"></script>
         <script src="content/js/alert.js"></script>
         <script src="content/js/ajax.js"></script>
-        
-        <script src="content/js/bootstrap-transition.js"></script>
-        <script src="content/js/bootstrap-alert.js"></script>
-        <script src="content/js/bootstrap-modal.js"></script>
-        <script src="content/js/bootstrap-dropdown.js"></script>
-        <script src="content/js/bootstrap-scrollspy.js"></script>
-        <script src="content/js/bootstrap-tab.js"></script>
-        <script src="content/js/bootstrap-tooltip.js"></script>
-        <script src="content/js/bootstrap-popover.js"></script>
-        <script src="content/js/bootstrap-button.js"></script>
         <script src="content/js/bootstrap-collapse.js"></script>
-        <script src="content/js/bootstrap-carousel.js"></script>
-        <script src="content/js/bootstrap-typeahead.js"></script>
     </body>
 </html>

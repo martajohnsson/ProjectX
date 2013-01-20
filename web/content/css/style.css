@@ -87,7 +87,7 @@ h2{
     font-style: italic;   
     font-size: 12px;
 }
-.blogpost-edit{
+.blogpost-edit, .media{
     border-top: dashed 1px #ddd;
 }
 .blogpost-read-more a{
@@ -103,7 +103,6 @@ h2.blogpost-title{
     border-top: dashed 1px #ddd;
     margin: 0 20px 0 20px;
 }
-
 .profile{
     border-right: solid 1px #ddd;
 }
@@ -162,4 +161,25 @@ h2.blogpost-title{
 code ol {
     list-style-type: decimal;
     margin-left: 50px;
+}
+/*
+ * RATING
+ * ---------------------------- */
+ #ratingbars {
+    width: 25%;
+    height: 5px;
+    background: #CCCCCC;
+    border: solid 1px #000;
+    margin: 5px 0;
+}
+#ratingbars #likes { 
+    background-color: #7FAF1B;
+    float: left;
+    height: 5px;
+}
+
+#ratingbars #dislikes {
+    background-color: #A40802;
+    float: left;
+    height: 5px;
 }
