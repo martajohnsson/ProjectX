@@ -15,36 +15,40 @@ class SnippetView
     {
         $sh = new Functions();
         
-        $html = "<h2 class='snippet-title' id='snippetTitle'>" . $snippet->getTitle() . "</h2>
-		<div class='snippet-description'>
-			<p>" . $snippet->getDesc() . "</p>	
-		</div>
-		<div class='snippet-code' id='snippet-text'>
-			<code id='code' class='snippet-text'>" . $sh->geshiHighlight($snippet->getCode(), $snippet->getLanguage()) . "</code>
-		</div>
-
-        <div id='hidden'>".$snippet->getCode()."</div>
+        $html = "
+        <div class='row'>
+        <div class='span12'>
+        <div class='inner'>
         
-		<div class='snippet-author'>
-			<span>Posted by " . $snippet->getAuthor();
-        if ($isOwner) {
-		    $html .= " <a onclick=\"javascript: return confirm('Do you want to remove this snippet?')\" href='?page=removesnippet&snippet=" . $snippet->getID() . "'>Delete</a> 
-		    <a href='?page=updatesnippet&snippet=" . $snippet->getID() . "'>Update</a>";
-	    }
-        if(AuthHandler::isLoggedIn()){    
-            $html .= '<br /><a id="report" href="#">Report this snippet!</a>';
-            $html .= '<div id="report-wrap"><form action="#" method="POST" name="reportsnippet">
-                        <textarea placeholder="What is wrong with the snippet?" name="report-message"></textarea>
-                        <input type="submit" name="send-report" value="Report!" />
-                    </form></div>';
-        }     
-		
-		$html .= "</span>
-	          </div>";
-          
-        $html .= "  <form action='' method='post'>
-                        <input type='submit' name='sendSnippetByMail' id='mail' value='Send Snippet by Mail' />
-                    </form>";      
+            <h1 class='snippet-title'>" . $snippet->getTitle() . "</h1>
+    		<div class='snippet-description'>
+    			<p>" . $snippet->getDesc() . "</p>	
+    		</div>
+    		<div class='snippet-code' id='snippet-text'>
+    			<code id='code' class='snippet-text'>" . $sh->geshiHighlight($snippet->getCode(), $snippet->getLanguage()) . "</code>
+    		</div>
+    
+            <div id='hidden'>".$snippet->getCode()."</div>
+            
+    		<div class='snippet-author'>
+    			<span>Posted by " . $snippet->getAuthor()."</span></br>";
+                if ($isOwner) {
+        		    $html .= " <a onclick=\"javascript: return confirm('Do you want to remove this snippet?')\" href='?page=removesnippet&snippet=" . $snippet->getID() . "'>Delete</a> 
+        		    <a href='?page=updatesnippet&snippet=" . $snippet->getID() . "'>Update</a>";
+        	    }
+                if(AuthHandler::isLoggedIn()){    
+                    $html .= '<br /><a id="report" href="#">Report this snippet!</a>';
+                    $html .= '<div id="report-wrap"><form action="#" method="POST" name="reportsnippet">
+                                <textarea placeholder="What is wrong with the snippet?" name="report-message"></textarea>
+                                <input type="submit" name="send-report" value="Report!" />
+                            </form></div>';
+                }     
+    		
+    		$html .= "</span>
+    	          </div>
+        </div>
+        </div>
+        </div>";      
         
         return $html;
     }
@@ -101,6 +105,7 @@ class SnippetView
  		</script>
         
         <div class="inner">
+        
         <h1 class="snippet-title">Add a new snippet</h1>
          
                 <form  class="form-horizontal" action="" method="post">

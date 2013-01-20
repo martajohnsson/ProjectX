@@ -16,18 +16,15 @@ class ProfileController
     private $_commentHandler;
     private $_data;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->_profileView = new ProfileView();
         $this->_userHandler = new UserHandler();
         $this->_gravatarHandler = new GravatarHandler();
         $this->_snippetHandler = new SnippetHandler();
         $this->_commentHandler = new CommentHandler();
-
     }
 
-    public function doControll()
-    {
+    public function doControll(){
         $html = '';
         if (AuthHandler::isLoggedIn()) {
             //Which profile is shown
@@ -66,10 +63,10 @@ class ProfileController
                             $this->generateApiKey($userId, $email);
                             $this->showSettingsPage($userId, $user->getApiKey(), $user);
                         } else {
-                            $this->_data['content'] = 'You must be the owner of to do this.';
+                            $this->_data['content'] = '<p>You must be the owner of to do this.</p>';
                         }
                     } else {
-                        $this->_data['content'] = 'The page you are looking for does not exist.';
+                        $this->_data['content'] = '<p>The page you are looking for does not exist.</p>';
                     }
 
                 }

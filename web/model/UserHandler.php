@@ -253,10 +253,11 @@ class UserHandler
         $user = null;
         $this->_dbHandler->__wakeup();
         if ($stmt = $this->_dbHandler->PrepareStatement("SELECT user.id, user.name, user.username ,auth.email, user.api_key, user.role_id
-FROM `user` as user
-INNER JOIN user_auth as auth
-ON user.id = auth.user_id
-WHERE auth.identifier = ?")) {
+                                                        FROM `user` as user
+                                                        INNER JOIN user_auth as auth
+                                                        ON user.id = auth.user_id
+                                                        WHERE auth.identifier = ?")) 
+        {
             $stmt->bind_param('s', $identifier);
             $stmt->execute();
 
